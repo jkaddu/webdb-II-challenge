@@ -56,4 +56,20 @@ router.post('/', (req, res) => {
 	}
 });
 
+router.put('/:id', (req, res) => {
+	db('zoos')
+		.where({ id: req.params.id })
+		.update(req.body)
+		.then((id) => {
+			if (id === id) {
+				res.status(200).json({ message: 'Record updated.' });
+			} else {
+				res.status(404).json({ message: 'Animal ID does not exist.' });
+			}
+		})
+		.catch((err) => {
+			res.status(500).json(err);
+		});
+});
+
 module.exports = router;
