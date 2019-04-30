@@ -21,3 +21,22 @@ router.get('/', (req, res) => {
 			res.status(500).json(err);
 		});
 });
+
+router.get('/:id', (req, res) => {
+	db('zoos')
+		.where({ id: req.params.id })
+		.first()
+		.then((zoo) => {
+			if (zoo) {
+				res.status(200).json(zoo);
+			} else {
+				res.status(404).json({ message: 'Animal not found.' });
+			}
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json(err);
+		});
+});
+
+module.exports = router;
