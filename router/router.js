@@ -72,4 +72,20 @@ router.put('/:id', (req, res) => {
 		});
 });
 
+router.delete('/:id', (req, res) => {
+	db('zoos')
+		.where({ id: req.params.id })
+		.delete()
+		.then((id) => {
+			if (id === id) {
+				res.status(200).json({ message: 'Record deleted.' });
+			} else {
+				res.status(404).json({ message: 'Animal ID does not exist.' });
+			}
+		})
+		.catch((err) => {
+			res.status(500).json(err);
+		});
+});
+
 module.exports = router;
