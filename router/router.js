@@ -11,6 +11,7 @@ const knewConfig = {
 
 const db = knex(knewConfig);
 
+// GET ZOO animals
 router.get('/', (req, res) => {
 	db('zoos')
 		.then((zoos) => {
@@ -22,6 +23,7 @@ router.get('/', (req, res) => {
 		});
 });
 
+// GET ZOO animals by ID
 router.get('/:id', (req, res) => {
 	db('zoos')
 		.where({ id: req.params.id })
@@ -39,6 +41,7 @@ router.get('/:id', (req, res) => {
 		});
 });
 
+// POST ZOO animal
 router.post('/', (req, res) => {
 	if (!req.body.name) {
 		res.status(400).json({ message: 'Please provide a name.' });
@@ -56,6 +59,7 @@ router.post('/', (req, res) => {
 	}
 });
 
+// Update ZOO animal
 router.put('/:id', (req, res) => {
 	db('zoos')
 		.where({ id: req.params.id })
@@ -72,6 +76,7 @@ router.put('/:id', (req, res) => {
 		});
 });
 
+// Delete ZOO animal
 router.delete('/:id', (req, res) => {
 	db('zoos')
 		.where({ id: req.params.id })
