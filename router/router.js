@@ -1,7 +1,7 @@
 const knex = require('knex');
 const router = require('express').Router();
 
-const knewConfig = {
+const knexConfig = {
 	client: 'sqlite3',
 	connection: {
 		filename: './data/lambda.sqlite3'
@@ -9,7 +9,7 @@ const knewConfig = {
 	useNullAsDefault: true
 };
 
-const db = knex(knewConfig);
+const db = knex(knexConfig);
 
 // GET ZOO animals
 router.get('/', (req, res) => {
